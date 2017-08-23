@@ -1,0 +1,270 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    /*font-size: 24px;  !* Preferred icon size *!*/
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.owner{
+    padding: 10px;
+    width: 300px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    display: flex;
+
+}
+
+.logout{
+    /*padding: 10px;*/
+    margin: auto;
+    color: #393436;
+    font-size: 20pt;
+}
+.owner .logout:hover{
+    /*padding: 10px;*/
+    margin: auto;
+    color: white;
+    cursor: pointer;
+    font-size: 20pt;
+}
+
+.owner .name{
+    /*color: white;*/
+    font-size: 18pt;
+    width: 300px;
+}
+
+#flex{
+    margin: auto;
+
+
+    border-radius: 0 0 15px 15px;
+
+    top: 5%;
+    position: relative;
+    width: 600px;
+    //height: 200px;
+
+    transition: transform,opacity;
+    transition-duration: 300ms;
+
+    overflow: hidden;
+
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+
+    margin-top: 50px;
+}
+
+
+.title{
+    height: 30px;
+    padding: 15px;
+
+    background: rgba(81,132,187,1);
+    background: -moz-linear-gradient(top, rgba(81,132,187,1) 0%, rgba(54,93,152,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(81,132,187,1)), color-stop(100%, rgba(54,93,152,1)));
+    background: -webkit-linear-gradient(top, rgba(81,132,187,1) 0%, rgba(54,93,152,1) 100%);
+    background: -o-linear-gradient(top, rgba(81,132,187,1) 0%, rgba(54,93,152,1) 100%);
+    background: -ms-linear-gradient(top, rgba(81,132,187,1) 0%, rgba(54,93,152,1) 100%);
+    background: linear-gradient(to bottom, rgba(81,132,187,1) 0%, rgba(54,93,152,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5184bb', endColorstr='#365d98', GradientType=0 );
+
+    border: 1px solid rgb(50, 75, 128);
+}
+
+
+.titleStr{
+    display: inline-block;
+    font-size: 25px;
+    color: white;
+    margin-left: 30px;
+}
+
+.titleActions{
+    display: inline-block;
+    float: right;
+
+}
+
+.titleIco{
+    display: inline-block;
+    font-size: 24px;
+    color: #393436;
+}
+
+.titleIco:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.titleActionsIco{
+    display: inline-block;
+    font-size: 24px;
+    color: #a7a7a7;
+}
+
+.titleActionsIco:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.addTask{
+    height: 45px;
+    display: inline-flex;
+
+
+
+    background: rgba(224,224,224,1);
+    background: -moz-linear-gradient(top, rgba(224,224,224,1) 0%, rgba(205,205,205,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(224,224,224,1)), color-stop(100%, rgba(205,205,205,1)));
+    background: -webkit-linear-gradient(top, rgba(224,224,224,1) 0%, rgba(205,205,205,1) 100%);
+    background: -o-linear-gradient(top, rgba(224,224,224,1) 0%, rgba(205,205,205,1) 100%);
+    background: -ms-linear-gradient(top, rgba(224,224,224,1) 0%, rgba(205,205,205,1) 100%);
+    background: linear-gradient(to bottom, rgba(224,224,224,1) 0%, rgba(205,205,205,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#cdcdcd', GradientType=0 );
+}
+
+.addTaskImg{
+    height: 45px;
+    color: #054c25;
+    font-size: 45px;
+    width: 45px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.addTaskControl{
+    height: 25px;
+    padding: 10px;
+    width: 535px;
+    display: inline-block;
+
+}
+
+.addTaskInput{
+    height: 25px;
+    width: 430px;
+    display: inline;
+    font-size: 12pt;
+}
+
+.addTaskBtn{
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8ac0a3+1,4d8363+100 */
+    background: #8ac0a3; /* Old browsers */
+    background: -moz-linear-gradient(top, #8ac0a3 1%, #4d8363 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #8ac0a3 1%,#4d8363 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #8ac0a3 1%,#4d8363 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac0a3', endColorstr='#4d8363',GradientType=0 ); /* IE6-9 */
+
+    color: white;
+
+    border-radius: 0px 7px 7px 0px;
+
+    position: relative;
+
+    border: none;
+
+    left: -4px;
+    margin: 0;
+    width: 100px;
+    height: 25px;
+    display: inline;
+    font-size: 12pt;
+}
+
+.addTaskBtn:hover{
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8ac0a3+1,4d8363+100 */
+    background: #8ac0a3; /* Old browsers */
+    background: -moz-linear-gradient(top, #8ac0a3 1%, #4d8363 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #8ac0a3 1%,#4d8363 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #8ac0a3 1%,#4d8363 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac0a3', endColorstr='#4d8363',GradientType=0 ); /* IE6-9 */
+
+    color: black;
+
+   cursor: pointer;
+}
+
+.task{
+    background-color: white;
+    display: inline-flex;
+    width: 600px;
+    border-top: 1px solid #bababa;
+}
+
+.taskCheckDiv{
+    width: 45px;
+    min-height: 45px;
+    border-right: 1px solid #bababa;
+    display: flex;
+
+}
+.taskCheck{
+    margin: auto;
+}
+
+
+.taskActions{
+    margin: auto;
+    width: 80px;
+    display: flex;
+}
+
+.taskStr{
+    margin-left: 3px;
+    padding: 10px;
+    height: 25px;
+    width: 415px;
+    display: inline-flex;
+    font-size: 12pt;
+    border-left: 1px solid #bababa;
+    border-right: 1px solid #bababa;
+}
+
+.taskManageIco{
+    display: block;
+    border-bottom: 1px solid #bababa ;
+}
+.taskManageIco:hover{
+    color: black;
+}
+
+.taskManageAction{
+    color:gray;
+    cursor: pointer;
+}
+.taskManageAction:hover{
+    color: black;
+}
