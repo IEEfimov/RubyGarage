@@ -74,7 +74,7 @@
     position: relative;
     width: 600px;
 
-    transition: transform,opacity;
+    transition: transform,opacity,height;
     transition-duration: 300ms;
 
     overflow: hidden;
@@ -106,6 +106,14 @@
     display: inline-block;
     font-size: 25px;
     color: white;
+    background-color: transparent;
+    width: 445px;
+    border: none;
+    margin-left: 30px;
+}
+.titleStr:focus{
+    outline: none;
+    border-bottom: 2px solid white;
     margin-left: 30px;
 }
 
@@ -129,10 +137,11 @@
 .titleActionsIco{
     display: inline-block;
     font-size: 24px;
-    color: #a7a7a7;
+    color: #d6d6d6;
 }
 
 .titleActionsIco:hover{
+    outline: #4d8363 ;
     color: white;
     cursor: pointer;
 }
@@ -221,6 +230,8 @@
     display: inline-flex;
     width: 600px;
     border-top: 1px solid #bababa;
+    transition: transform,height,opacity;
+    transition-duration: 200ms;
 }
 
 .taskCheckDiv{

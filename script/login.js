@@ -416,17 +416,183 @@ function addMyProject(id) {
             added.style.opacity = "1";
             // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
 
-        }, 400); // время в мс
-        //
-        // setTimeout(function () {
-        //     login.style.transform = "scale(0.1)";
-        //     login.style.opacity = "0";
-        //     loadLoginScreen();
-        //     // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
-        //
-        // }, 1500); // время в мс
+        }, 400);
     }
 }
 
+function deleteProject(current){
+
+    var id = "";
+    for (var i=9;i<current.id.length; i++){
+        id += current.id[i];
+    }
+    // alert(id);
+
+    $.post(
+        "script/ProjectActions/deleteProject.php",
+        {
+            deletedID: id
+        },
+        onAjaxSuccess
+    );
+
+    function onAjaxSuccess(data)
+    {
+        var deleted = document.querySelector('#flex'+id);
+        deleted.style.transform = "scale(0.1)";
+        deleted.style.opacity = "0";
+        // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        //
+        //
+        setTimeout(function () {
+            deleted.style.display = "none";
+
+        }, 400);
+    }
+}
+
+function keyup(current) {
+    var id = "";
+    for (var i=4;i<current.id.length; i++){
+        id += current.id[i];
+    }
+
+    $.post(
+        "script/ProjectActions/renameProject.php",
+        {
+            renamedID: id,
+            renamedName: current.value
+        },
+        onAjaxSuccess
+    );
+
+    function onAjaxSuccess(data)
+    {
+        // alert(data);
+        // var deleted = document.querySelector('#flex'+id);
+        // deleted.style.transform = "scale(0.1)";
+        // deleted.style.opacity = "0";
+        // // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        // //
+        // //
+        // setTimeout(function () {
+        //     deleted.style.display = "none";
+        //
+        // }, 400);
+    }
+}
+
+function editProject(current) {
+    var id = "";
+    for (var i=7;i<current.id.length; i++){
+        id += current.id[i];
+    }
+    var line = document.querySelector("#name"+id);
+    line.select();
+    line.focus();
+
+}
+
+function addTaskOnClick(current) {
+    var id = "";
+    for (var i=10;i<current.id.length; i++){
+        id += current.id[i];
+    }
+
+    var text = document.querySelector("#addTaskInput"+id).value;
+
+    $.post(
+        "script/TaskActions/addTask.php",
+        {
+            taskText: text,
+            projectID: id
+        },
+        onAjaxSuccess
+    );
+
+    function onAjaxSuccess(data)
+    {
+        addMyTask(data,id);
+        // var deleted = document.querySelector('#flex'+id);
+        // deleted.style.transform = "scale(0.1)";
+        // deleted.style.opacity = "0";
+        // // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        // //
+        // //
+        // setTimeout(function () {
+        //     deleted.style.display = "none";
+        //
+        // }, 400);
+    }
+}
+
+function addMyTask(id,flexID) {
+    lastInsert = id;
+    $.post(
+        "pages/templates/Handler.php",
+        {
+            classer: "Task",
+            ider: id
+        },
+        onAjaxSuccess
+    );
+
+    function onAjaxSuccess(data)
+    {
+        $("#TasksIn"+flexID).append(data);
+        //alert('#task'+flexID+"_"+id);
+        var added = document.querySelector('#task'+flexID+"_"+id);
+        added.style.transform = "scale(0.1)";
+        added.style.opacity = "0";
+        // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        //
+        //
+        setTimeout(function () {
+            added.style.transform = "scale(1)";
+            added.style.opacity = "1";
+            // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
+
+        }, 50);
+    }
+}
+
+function taskStrOnChange(current) {
+    if(event.keyCode == 13){
+        var id = "";
+        for (var i=12;i<current.id.length; i++){
+            id += current.id[i];
+        }
+        addTaskOnClick(document.querySelector("#AddTaskBtn"+id));
+        current.value="";
+        return;
+    }
+}
+
+
+function deleteTask(flex,id){
+
+
+    $.post(
+        "script/TaskActions/deleteTask.php",
+        {
+            deletedID: id
+        },
+        onAjaxSuccess
+    );
+
+    function onAjaxSuccess(data)
+    {
+        var deleted = document.querySelector('#task'+flex+"_"+id);
+        deleted.style.transform = "scale(0.1)";
+        deleted.style.opacity = "0";
+        // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        //
+        //
+        setTimeout(function () {
+            deleted.style.display = "none";
+
+        }, 400);
+    }
+}
 
 

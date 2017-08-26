@@ -37,3 +37,14 @@ if ($class == "Project"){
     }
 
 }
+if ($class == "Task"){
+    include_once("Task.php");
+
+    $query = "SELECT * FROM `Tasks` WHERE `ID`= '$id'";
+    $item = mysqli_fetch_assoc( mysqli_query($connect, $query));
+
+    $project = new Task($item['ID'],$item['Priority'],$item['Status'],$item['Name'],$item['Project']);
+    $project->write();
+
+
+}

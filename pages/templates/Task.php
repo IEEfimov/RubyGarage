@@ -27,12 +27,12 @@ class Task
         $checked = "";
         if ($this->status == true) $checked = "checked";
         echo "
-    <div class='task'>
+    <div class='task' id='task$this->project_id"."_$this->id'>
         <div class='taskCheckDiv'>
             <input type='checkbox' class='taskCheck' $checked>
         </div>
 
-        <div class='taskStr'> $this->name</div>
+        <div class='taskStr' > $this->name</div>
         <div class='taskActions'>
             <div class='taskActionsManage taskCheck'>
                 <i class='material-icons taskManageIco taskManageAction'>arrow_drop_up</i>
@@ -40,7 +40,7 @@ class Task
             </div>
 
             <i class='material-icons taskCheck taskManageAction'>mode_edit</i>
-            <i class='material-icons taskCheck taskManageAction'>delete</i>
+            <i class='material-icons taskCheck taskManageAction' onclick='deleteTask($this->project_id ,$this->id)'>delete</i>
 
         </div>
     </div>";

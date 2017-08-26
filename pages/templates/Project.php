@@ -26,13 +26,13 @@ class Project
         <div class='titleIco'>
             <i class='material-icons'>date_range</i>
         </div>
-        <span class='titleStr'> $this->name </span>
+        <input type='text' class='titleStr' id='name$this->id' value='$this->name' onkeyup='keyup(this)'>  </input>
         <div class='titleActions'>
             <div class='titleActionsIco'>
-                <i class='material-icons'>mode_edit</i>
+                <i class='material-icons' id='editBtn$this->id' onclick='editProject(this)'>mode_edit</i>
             </div>
             <div class='titleActionsIco'>
-                <i class='material-icons'>delete</i>
+                <i class='material-icons'  id='deleteBtn$this->id' onclick='deleteProject(this)'>delete</i>
             </div>
         </div>
     </div>
@@ -40,25 +40,38 @@ class Project
     <div class='addTask'>
             <i class='material-icons addTaskImg'>add</i>
         <div class='addTaskControl'>
-            <input type='text' class='addTaskInput' placeholder='Start typing here to create a task'>
-            <input type='button' class='addTaskBtn' value='Add Task'>
+            <input type='text' class='addTaskInput' placeholder='Start typing here to create a task'
+            id='AddTaskInput$this->id' onkeyup='taskStrOnChange(this)'>
+            <input type='button' id='AddTaskBtn$this->id' class='addTaskBtn' value='Add Task'  onclick='addTaskOnClick(this)' >
         </div>
-    </div>";
+    </div>
+    <div id='TasksIn$this->id'>";
+
 
         include_once("Task.php");
 
-        $tasks = array(
-            0 => new Task(0,1,false,"Сделать все красиво",0),
-            1 => new Task(0,2,true,"Допилить функционал",0),
-            2 => new Task(0,2,false,"Поднять сервак",0)
-        );
+        $host = 'localhost'; // адрес сервера
+        $database = 'RubyGarage'; // имя базы данных
+        $user = 'root'; // имя пользователя
 
-        foreach ($tasks as $task){
-            $task->write();
+        $password = ''; // пароль
+
+        $connect = mysqli_connect($host, $user, $password, $database)
+        or die("Ошибка " . mysqli_error($connect));
+
+        $query = "SELECT * FROM `Tasks` WHERE `Project`= '$this->id'";
+        $result = mysqli_fetch_all( mysqli_query($connect, $query),MYSQLI_ASSOC);
+
+        $index = 0;
+
+        foreach ($result as $item){
+            $tasks[$index] = new Task($item['ID'],$item['Priority'],$item['Status'],$item['Name'],$item['Project']);
+            $tasks[$index]->write();
+            $index++;
         }
-
         echo "</div>";
 
+        echo "</div>";
     }
 
 }
