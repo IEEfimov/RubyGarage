@@ -1,8 +1,6 @@
 
 body{
     position: relative;
-
-
     transition: transform,opacity;
     transition-duration: 300ms;
 }
@@ -17,6 +15,12 @@ body::before {
     width: 100%;
     will-change: transform;
     z-index: -1;
+}
+
+#root{
+
+    transition: transform,opacity;
+    transition-duration: 300ms;
 }
 
 #string{
