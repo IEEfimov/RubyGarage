@@ -29,10 +29,10 @@ class Project
         <input type='text' class='titleStr' id='name$this->id' value='$this->name' onkeyup='keyup(this)'>  </input>
         <div class='titleActions'>
             <div class='titleActionsIco'>
-                <i class='material-icons' id='editBtn$this->id' onclick='editProject(this)'>mode_edit</i>
+                <i class='material-icons' onclick='editProject($this->id)'>mode_edit</i>
             </div>
             <div class='titleActionsIco'>
-                <i class='material-icons'  id='deleteBtn$this->id' onclick='deleteProject(this)'>delete</i>
+                <i class='material-icons' onclick='deleteProject($this->id)'>delete</i>
             </div>
         </div>
     </div>
@@ -41,8 +41,8 @@ class Project
             <i class='material-icons addTaskImg'>add</i>
         <div class='addTaskControl'>
             <input type='text' class='addTaskInput' placeholder='Start typing here to create a task'
-            id='AddTaskInput$this->id' onkeyup='taskStrOnChange(this)'>
-            <input type='button' id='AddTaskBtn$this->id' class='addTaskBtn' value='Add Task'  onclick='addTaskOnClick(this)' >
+            id='AddTaskInput$this->id' onkeyup='taskStrOnChange(this,$this->id)'>
+            <input type='button' class='addTaskBtn' value='Add Task'  onclick='addTaskOnClick($this->id)' >
         </div>
     </div>
     <div id='TasksIn$this->id'>";
@@ -65,7 +65,7 @@ class Project
         $index = 0;
 
         foreach ($result as $item){
-            $tasks[$index] = new Task($item['ID'],$item['Priority'],$item['Status'],$item['Name'],$item['Project']);
+            $tasks[$index] = new Task($item['ID'],$item['Status'],$item['Name'],$item['Project']);
             $tasks[$index]->write();
             $index++;
         }

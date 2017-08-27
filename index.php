@@ -3,7 +3,7 @@
         <title> RubyGarage Todo list</title>
         <link href="style/main.css" rel="stylesheet">
         <script src="script/login.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="script/jquery-3.2.1.min.js"></script>
     </head>
 
 <body onload="preload()">

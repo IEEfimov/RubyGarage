@@ -17,6 +17,14 @@ body::before {
     z-index: -1;
 }
 
+#saveMeStr{
+    cursor: pointer;
+}
+
+#saveMeStr:hover{
+    color: rgba(185, 72, 52, 0.94);
+}
+
 #root{
 
     transition: transform,opacity;

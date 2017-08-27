@@ -230,8 +230,8 @@
     display: inline-flex;
     width: 600px;
     border-top: 1px solid #bababa;
-    transition: transform,height,opacity;
-    transition-duration: 200ms;
+    transition: transform,height,opacity,top;
+    transition-duration: 400ms;
 }
 
 .taskCheckDiv{
@@ -253,6 +253,23 @@
 }
 
 .taskStr{
+    /*margin-left: 3px;*/
+    padding: 10px;
+    height: 25px;
+    width: 415px;
+    display: inline-flex;
+    font-size: 12pt;
+    /*border-left: 1px solid #bababa;*/
+    /*border-right: 1px solid #bababa;*/
+    margin: auto;
+    border: none;
+}
+.taskStr:disabled{
+   background-color: transparent;
+    color: black;
+}
+
+.taskStrBox{
     margin-left: 3px;
     padding: 10px;
     height: 25px;
@@ -261,6 +278,8 @@
     font-size: 12pt;
     border-left: 1px solid #bababa;
     border-right: 1px solid #bababa;
+    /*margin: auto;*/
+    /*border: none;*/
 }
 
 .taskManageIco{

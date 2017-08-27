@@ -20,17 +20,16 @@ if ($user['Password'] != $_COOKIE["Password"]){
     die("wrong pass");
 }
 
-$DeletedID = -1;
-if (isset($_POST['deletedID'])) $DeletedID = $_POST['deletedID'];
-if ($DeletedID == -1) die("Unset id error");
+$taskID = -1;
+if (isset($_POST['taskID'])) $taskID = $_POST['taskID'];
+if ($taskID == -1) die("Unset id error");
 
-$query = "DELETE FROM `Projects` WHERE ID='$DeletedID'";
+if (isset($_POST['newValue'])) $newValue = $_POST['newValue'];
+
+
+$query = "UPDATE `Tasks` SET `Status`=$newValue WHERE ID=$taskID";
 
 if (mysqli_query($connect,$query)){
-    $query = "DELETE FROM `Tasks` WHERE Project='$DeletedID'";
-
-    if (mysqli_query($connect,$query)){
-        echo $DeletedID;
-    }
+    echo "TRUE";
 }
 else die("FALSE");

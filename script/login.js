@@ -36,6 +36,13 @@ function preload() {
         else loginAlertClose();
     });
 
+    $("#saveMe").keyup(function(event){
+        if(event.keyCode == 13){
+            login();
+            return;
+        }
+    });
+
 }
 
 function loginAlert(text) {
@@ -182,6 +189,11 @@ function login() {
             }, 700); // время в мс
         }
     }
+}
+
+function changeCheckedSaveMe(){
+    var checkBox = document.querySelector("#saveMe");
+    checkBox.checked = !checkBox.checked;
 }
 
 function loadMainScreen() {
@@ -420,14 +432,7 @@ function addMyProject(id) {
     }
 }
 
-function deleteProject(current){
-
-    var id = "";
-    for (var i=9;i<current.id.length; i++){
-        id += current.id[i];
-    }
-    // alert(id);
-
+function deleteProject(id){
     $.post(
         "script/ProjectActions/deleteProject.php",
         {
@@ -482,23 +487,14 @@ function keyup(current) {
     }
 }
 
-function editProject(current) {
-    var id = "";
-    for (var i=7;i<current.id.length; i++){
-        id += current.id[i];
-    }
+function editProject(id) {
     var line = document.querySelector("#name"+id);
     line.select();
     line.focus();
 
 }
 
-function addTaskOnClick(current) {
-    var id = "";
-    for (var i=10;i<current.id.length; i++){
-        id += current.id[i];
-    }
-
+function addTaskOnClick(id) {
     var text = document.querySelector("#addTaskInput"+id).value;
 
     $.post(
@@ -556,13 +552,9 @@ function addMyTask(id,flexID) {
     }
 }
 
-function taskStrOnChange(current) {
+function taskStrOnChange(current,id) {
     if(event.keyCode == 13){
-        var id = "";
-        for (var i=12;i<current.id.length; i++){
-            id += current.id[i];
-        }
-        addTaskOnClick(document.querySelector("#AddTaskBtn"+id));
+        addTaskOnClick(id);
         current.value="";
         return;
     }
@@ -570,9 +562,7 @@ function taskStrOnChange(current) {
 
 
 function deleteTask(flex,id){
-
-
-    $.post(
+  $.post(
         "script/TaskActions/deleteTask.php",
         {
             deletedID: id
@@ -595,4 +585,169 @@ function deleteTask(flex,id){
     }
 }
 
+function editTask(id){
+    var line = document.querySelector("#taskStr"+id);
+    line.removeAttribute("readonly");
+    line.select();
+    line.focus();
+    $("#taskStr"+id).keyup(function(event){
+        $.post(
+            "script/TaskActions/renameTask.php",
+            {
+                renamedID: id,
+                renamedName: line.value
+            },
+            onAjaxSuccess
+        );
 
+          function onAjaxSuccess(data)
+          {
+             
+          }
+    }).focusout(function() {
+        line.setAttribute("readonly","");
+    });
+    // alert("#taskStr"+id);
+  //
+}
+
+function setStatus(id, current){
+    var value = current.checked;
+    $.post(
+            "script/TaskActions/setStatus.php",
+            {
+                taskID: id,
+                newValue: value
+            },
+            null
+        );
+}
+
+function priorityUP(flex, current){
+    var id="";
+    for (var i = 5; i < current.id.length; i++) {
+        id += current.id[i];
+    }
+
+    $.post(
+            "script/TaskActions/priorityUP.php",
+            {
+                taskID: id,
+                projectID: flex
+            },
+            onSucces
+        );
+
+    function onSucces(data){
+        
+
+        var oldTask = document.querySelector("#task"+flex+"_"+id);
+        var newTask = document.querySelector("#task"+flex+"_"+data);
+
+        if (oldTask == null || newTask == null) return;
+
+        var height1 = $("#task"+flex+"_"+id).height();
+        var height2 = $("#task"+flex+"_"+data).height();
+
+        oldTask.style.transform="translateY(-"+(height1+1)+"px)";
+        newTask.style.transform="translateY("+(height2+1)+"px)";
+
+         setTimeout(function () {
+            var oldTask = document.querySelector("#task"+flex+"_"+id);
+            var newTask = document.querySelector("#task"+flex+"_"+data);
+            oldTask.style.transitionDuration="0ms";
+            newTask.style.transitionDuration="0ms";
+            oldTask.style.transform="translateY(-"+(0)+"px)";
+            newTask.style.transform="translateY("+(0)+"px)";
+            var oldTask = document.querySelector("#taskStr"+id);
+            var newTask = document.querySelector("#taskStr"+data);
+
+            var copy = oldTask.value;
+            oldTask.value = newTask.value;
+            newTask.value = copy;
+
+            var oldTask = document.querySelector("#checkBox"+id);
+            var newTask = document.querySelector("#checkBox"+data);
+            var copy = oldTask.checked;
+            oldTask.checked = newTask.checked;
+            newTask.checked = copy;
+            // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
+
+        }, 500);
+         setTimeout(function () {
+            var oldTask = document.querySelector("#task"+flex+"_"+id);
+        var newTask = document.querySelector("#task"+flex+"_"+data);
+            oldTask.style.transitionDuration="400ms";
+            newTask.style.transitionDuration="400ms";
+
+            
+
+            // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
+
+        }, 550);
+        
+    }
+}
+
+function priorityDOWN(flex, current){
+    var id="";
+    for (var i = 7; i < current.id.length; i++) {
+        id += current.id[i];
+    }
+
+    $.post(
+            "script/TaskActions/priorityDOWN.php",
+            {
+                taskID: id,
+                projectID: flex
+            },
+            onSucces
+        );
+
+    function onSucces(data){
+        var oldTask = document.querySelector("#task"+flex+"_"+id);
+        var newTask = document.querySelector("#task"+flex+"_"+data);
+
+        if (oldTask == null || newTask == null) return;
+
+        var height1 = $("#task"+flex+"_"+id).height();
+        var height2 = $("#task"+flex+"_"+data).height();
+
+        oldTask.style.transform="translateY("+(height1+1)+"px)";
+        newTask.style.transform="translateY(-"+(height2+1)+"px)";
+
+         setTimeout(function () {
+            var oldTask = document.querySelector("#task"+flex+"_"+id);
+            var newTask = document.querySelector("#task"+flex+"_"+data);
+            oldTask.style.transitionDuration="0ms";
+            newTask.style.transitionDuration="0ms";
+            oldTask.style.transform="translateY("+(0)+"px)";
+            newTask.style.transform="translateY("+(0)+"px)";
+            var oldTask = document.querySelector("#taskStr"+id);
+            var newTask = document.querySelector("#taskStr"+data);
+
+            var copy = oldTask.value;
+            oldTask.value = newTask.value;
+            newTask.value = copy;
+
+            var oldTask = document.querySelector("#checkBox"+id);
+            var newTask = document.querySelector("#checkBox"+data);
+            var copy = oldTask.checked;
+            oldTask.checked = newTask.checked;
+            newTask.checked = copy;
+            // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
+
+        }, 500);
+         setTimeout(function () {
+            var oldTask = document.querySelector("#task"+flex+"_"+id);
+        var newTask = document.querySelector("#task"+flex+"_"+data);
+            oldTask.style.transitionDuration="400ms";
+            newTask.style.transitionDuration="400ms";
+
+            
+
+            // login.style.backgroundColor = "rgba(35, 95, 64, 0.94)";
+
+        }, 550);
+    }
+}
