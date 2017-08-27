@@ -12,7 +12,7 @@ include_once("../DBparams.php");
 $login = trim($_POST['login']);
 $password = md5($_POST['password']);
 
-$query = "SELECT * FROM `Users` WHERE `Login`= '".$login."'";
+$query = "SELECT * FROM `users` WHERE `Login`= '".$login."'";
 $user = mysqli_fetch_assoc( mysqli_query($connect, $query));
 if ($user['Password'] == $password){
     if ($_POST['save'] == "true") setcookie("login_save","$login",time() + 86400,"/");

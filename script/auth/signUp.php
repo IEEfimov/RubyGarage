@@ -13,13 +13,15 @@ $surname = trim($_POST['surname']);
 $login = trim($_POST['login']);
 $password = md5($_POST['password']);
 
-$query = "SELECT count(*) as total FROM `Users` WHERE `Login`= '$login'";
+$query = "SELECT count(*) as total FROM `users` WHERE `Login`= '$login'";
 $result=mysqli_query($connect,$query);
+
 $count=mysqli_fetch_assoc($result);
+
 
 if ($count['total'] > 0) die("isExist");
 
 
-$query = "INSERT INTO `Users` VALUES ('','$name','$surname','$login','$password')";
+$query = "INSERT INTO `users` VALUES ('','$name','$surname','$login','$password')";
 if (mysqli_query($connect,$query)) echo "TRUE";
 else echo "FALSE";

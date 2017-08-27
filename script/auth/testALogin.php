@@ -10,7 +10,7 @@ include_once("../DBparams.php");
 
 $login = $_POST['login'];
 
-$query = "SELECT count(*) as total FROM `Users` WHERE `Login`= '$login'";
+$query = "SELECT count(*) as total FROM `users` WHERE `Login`= '$login'";
 $result=mysqli_query($connect,$query);
 $count=mysqli_fetch_assoc($result);
 

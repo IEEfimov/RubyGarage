@@ -3,9 +3,9 @@
 include_once("../script/DBparams.php");
 
 if (isset($_COOKIE['login_save'])){
-    $query = "SELECT * FROM `Users` WHERE `Login`= '".$_COOKIE['login_save']."'";
+    $query = "SELECT * FROM `users` WHERE `Login`= '".$_COOKIE['login_save']."'";
 }else{
-    $query = "SELECT * FROM `Users` WHERE `Login`= '".$_POST['login']."'";
+    $query = "SELECT * FROM `users` WHERE `Login`= '".$_POST['login']."'";
 }
 
 $user = mysqli_fetch_assoc( mysqli_query($connect, $query));
@@ -27,7 +27,7 @@ echo "<div class=\"owner\">
 </div>";
     include_once("../pages/templates/Project.php");
 
-    $query = "SELECT * FROM `Projects` WHERE `Owner`= '$user[ID]'";
+    $query = "SELECT * FROM `projects` WHERE `Owner`= '$user[ID]'";
     $result = mysqli_fetch_all( mysqli_query($connect, $query),MYSQLI_ASSOC);
 
 

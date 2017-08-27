@@ -59,16 +59,27 @@ class Project
         $connect = mysqli_connect($host, $user, $password, $database)
         or die("Ошибка " . mysqli_error($connect));
 
-        $query = "SELECT * FROM `Tasks` WHERE `Project`= '$this->id'";
-        $result = mysqli_fetch_all( mysqli_query($connect, $query),MYSQLI_ASSOC);
+        $query = "SELECT * FROM `tasks` WHERE `Project`= '$this->id'";
 
-        $index = 0;
-
-        foreach ($result as $item){
-            $tasks[$index] = new Task($item['ID'],$item['Status'],$item['Name'],$item['Project']);
-            $tasks[$index]->write();
-            $index++;
+        $result = array();
+        $resulte = $connect->query($query);
+        while ($row = $resulte->fetch_assoc()) {
+            $result = $row;
+            $task = new Task($row['ID'],$row['Status'],$row['Name'],$row['Project']);
+            $task->write();
         }
+
+        // $result = mysqli_fetch_all( mysqli_query($connect, $query),MYSQLI_ASSOC);
+
+
+
+        // $index = 0;
+
+        // foreach ($result as $item){
+        //     $tasks[$index] = new Task($item['ID'],$item['Status'],$item['Name'],$item['Project']);
+        //     $tasks[$index]->write();
+        //     $index++;
+        // }
         echo "</div>";
 
         echo "</div>";

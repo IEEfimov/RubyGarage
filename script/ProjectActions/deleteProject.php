@@ -9,7 +9,7 @@
 include_once("../../script/DBparams.php");
 
 if (isset($_COOKIE['current_login'])){
-    $query = "SELECT * FROM `Users` WHERE `Login`= '".$_COOKIE['current_login']."'";
+    $query = "SELECT * FROM `users` WHERE `Login`= '".$_COOKIE['current_login']."'";
 }
 $user = mysqli_fetch_assoc( mysqli_query($connect, $query));
 
@@ -24,10 +24,10 @@ $DeletedID = -1;
 if (isset($_POST['deletedID'])) $DeletedID = $_POST['deletedID'];
 if ($DeletedID == -1) die("Unset id error");
 
-$query = "DELETE FROM `Projects` WHERE ID='$DeletedID'";
+$query = "DELETE FROM `projects` WHERE ID='$DeletedID'";
 
 if (mysqli_query($connect,$query)){
-    $query = "DELETE FROM `Tasks` WHERE Project='$DeletedID'";
+    $query = "DELETE FROM `tasks` WHERE Project='$DeletedID'";
 
     if (mysqli_query($connect,$query)){
         echo $DeletedID;

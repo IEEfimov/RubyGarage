@@ -9,7 +9,7 @@
 include_once("../../script/DBparams.php");
 
 if (isset($_COOKIE['current_login'])){
-    $query = "SELECT * FROM `Users` WHERE `Login`= '".$_COOKIE['current_login']."'";
+    $query = "SELECT * FROM `users` WHERE `Login`= '".$_COOKIE['current_login']."'";
 }
 $user = mysqli_fetch_assoc( mysqli_query($connect, $query));
 

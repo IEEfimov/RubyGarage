@@ -13,7 +13,7 @@ $id = $_POST['ider'];
 include_once("../../script/DBparams.php");
 
 if (isset($_COOKIE['current_login'])){
-    $query = "SELECT * FROM `Users` WHERE `Login`= '".$_COOKIE['current_login']."'";
+    $query = "SELECT * FROM `users` WHERE `Login`= '".$_COOKIE['current_login']."'";
 }
 $user = mysqli_fetch_assoc( mysqli_query($connect, $query));
 
@@ -27,7 +27,7 @@ if ($user['Password'] != $_COOKIE["Password"]){
 if ($class == "Project"){
     include_once("Project.php");
 
-    $query = "SELECT * FROM `Projects` WHERE `ID`= '$id'";
+    $query = "SELECT * FROM `projects` WHERE `ID`= '$id'";
     $result = mysqli_fetch_assoc( mysqli_query($connect, $query));
 
 
@@ -40,7 +40,7 @@ if ($class == "Project"){
 if ($class == "Task"){
     include_once("Task.php");
 
-    $query = "SELECT * FROM `Tasks` WHERE `ID`= '$id'";
+    $query = "SELECT * FROM `tasks` WHERE `ID`= '$id'";
     $item = mysqli_fetch_assoc( mysqli_query($connect, $query));
 
     $project = new Task($item['ID'],$item['Status'],$item['Name'],$item['Project']);
